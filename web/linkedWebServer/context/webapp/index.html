@@ -1,0 +1,22 @@
+<script src="http://code.jquery.com/jquery-latest.min.js" type="application/javascript"></script>
+<script src="jquery.timer.js" type="application/javascript"></script>
+<script>
+    var url = "http://SERVICE_IP:SERVICE_PORT/service/dummy/get?callback=?";
+    $(document).ready(function(){$("#url").append(url);});
+    
+    getArticle = function(){
+        $.getJSON(url);        
+    }
+
+    article = function(data){
+        $("#result").prepend(data.description + "<br>");
+    }
+    
+    var timer =  $.timer(getArticle, 10, true);  
+
+</script>
+
+<p>Web App V3</p>
+
+<div id="url"></div>
+<div id="result"></div>

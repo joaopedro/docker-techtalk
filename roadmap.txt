@@ -1,0 +1,13 @@
+- Criar um web server a partir de uma imagem padarão.
+
+-Costumizar a aplicação web (Exemplificar subidas de versão e tagging)
+
+-Expor um volume (explicar vantagens)
+
+-mostrar Diff
+-mostrar publicação para o registry publico e privado
+
+-criar um servico rest
+-criar uma imagem para o servico rest
+
+-Ligar o web server ao serviço rest... explicar o conceito da ligação e modo de discovery.

@@ -1,13 +1,38 @@
 - Criar um web server a partir de uma imagem padarão.
+    docker build -t jpedro/webserver .
+    doccker run -d -p 80 jpedro/webserver
 
 -Costumizar a aplicação web (Exemplificar subidas de versão e tagging)
+    docker tag <imageid> jpedro/webserver:v1
+    <Create new Dockerfile from jpedro/webserver:v1>
+    <run v1 e latest>
+    <tag latest -> v2>
 
 -Expor um volume (explicar vantagens)
-
+    <Expor o volume do Dockerfile>
+    Docker run -d -p 80 -v /var/log/apache2:/home/jpedro/apacheLogs jpedro/webserver
+    
 -mostrar Diff
+    docker diff <containerid>
+    docker image -t
+    docker history <imageid>
+    docker inspect <containerid> ou <imageid>
 -mostrar publicação para o registry publico e privado
+    docker push
+    docker pull
 
--criar um servico rest
 -criar uma imagem para o servico rest
+    docker build -t jpedro/service .
+    docker run -d -p 8080 jpedro/service
 
 -Ligar o web server ao serviço rest... explicar o conceito da ligação e modo de discovery.
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
+
+    docker run -d -p 8080 --name service1 jpedro/service 
+    docker run -d -p 8080 --name service2 jpedro/service 
+    docker run -d -p 8080 --name service3 jpedro/service
+
+    docker run -d -p 80 --link service1:service -name webserver1 jpedro/service  
+    docker run -d -p 80 --link service2:service -name webserver2 jpedro/service  
+    docker run -d -p 80 --link service3:service -name webserver3 jpedro/service  
